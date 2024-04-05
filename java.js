@@ -34,28 +34,34 @@ function ordem(){
 
 }
 
-function primo(){
-    let numeros = [];
-    let pri = [];
-    let naopri = [];
+function primo() {
+    let numeros = prompt("Digite a lista de números separados por vírgula:");
+    let primos = [];
+    let naoPrimos = [];
 
-    numeros = prompt("Digite a lista de números separados por vírgula:");
-    let primos = numeros.split(",");
-    
-    for (let i = 0; i < primos.length; i++) {
+    let lista = numeros.split(",").map(Number);
 
-        let nu = Math.sqrt(parseInt(primos[i])); 
+    for (let i = 0; i < lista.length; i++) {
+        let num = lista[i];
+        let isPrimo = true;
 
-            if (Number.isInteger(nu)) {
-            naopri.push(primos[i]);
-            } else {
-            pri.push(primos[i]);
-         }
+        if (num <= 1) {
+            isPrimo = false;
+        } else {
+            for (let j = 2; j <= Math.sqrt(num); j++) {
+                if (num % j === 0) {
+                    isPrimo = false;
+                    break;
+                }
+            }
+        }
 
+        if (isPrimo) {
+            primos.push(num);
+        } else {
+            naoPrimos.push(num);
+        }
     }
-        alert("Números primos: " + pri);
-         alert("Números não primos: " + naopri);
-}
 
 function palavras(){
     let texto = prompt("digite o texto separado por 1 de espaço");
